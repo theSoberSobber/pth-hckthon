@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Dashboard</title>{% endblock title %}
+
+{% block body %}
+
+<div class="container-fluid bg-image align-items-center image">
+    <div style="color: lightgreen;width: auto;height: 100%;text-align: center;">
+        <br> <br><br> <br>
+        <h4 style="color: orange;font-weight: bold;font-style: italic;">Hii, {{ request.user }}</h4>
+        <h2 style="font-weight: bold;letter-spacing: 8px;transform: scaleY(1.2);">You have successfully logged in</h2>
+        <br>
+        <i class="fa fa-check-circle" style="font-size: 100px;" aria-hidden="true"></i>
+        <br><br>
+        <a class="btn btn-outline-danger btn-lg" href="{% url 'logout' %}" role="button">Logout</a>
+    </div>
+</div>
+
+{% endblock body %}

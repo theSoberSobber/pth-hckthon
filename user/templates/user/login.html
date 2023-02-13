@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Login</title>{% endblock title %}
+
+{% block body %}
+
+{% if passpoint %}
+
+    <div class="container-fluid">
+        <br>
+        {% include "user/passpoint.html" %}
+    </div>
+
+{% else %}
+
+<div class="container-fluid">
+    <div class="row no-gutter">
+
+        <!-- The image half -->
+        <div class="col-md-6 d-md-flex bg-image align-items-center">
+            <div style="color: orange;width: 100%;text-align: center;">
+                <h2 style="font-weight: bold;letter-spacing: 15px;transform: scaleY(1.3);">Authentication</h2>
+                <br>
+                <img style="width: 225px;height: auto;" src="{% static 'images/secured.png' %}" alt="secured logo">
+            </div>
+        </div>
+
+
+        <!-- The content half -->
+        <div class="col-md-6 bg-light">
+            <div class="login d-flex align-items-center py-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto">
+                            <h3 class="display-4">Login</h3>
+                            <p class="text-muted mb-4">Enanced your login by using extra layer protection</p>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="step" value="auth">
+
+                                {% if messages %}
+                                <ul class="messages" style="padding: 0px;">
+                                    {% for message in messages %}
+                                        <div class="alert alert-danger">
+                                            <strong> {{ message }} </strong>
+                                        </div>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+
+                                <div class="form-group mb-3">
+                                    <input name="inputUsername" type="text" placeholder="Username" required="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input name="inputPassword" type="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Log in</button>
+                                <div class="text-center d-flex justify-content-between mt-4">
+                                    <a href="{% url 'register' %}" class="font-italic text-muted">
+                                        <u>Create an account</u>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- End -->
+
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock body %}
+
+{% block script %}
+    <script src="{% static 'js/main.js' %}"></script>
+{% endblock script %}

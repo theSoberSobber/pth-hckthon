@@ -1,0 +1,85 @@
+<div id="divSet1">
+    <div class="container">
+        <h5>Select 1st Image Point</h5>
+    </div>
+    <div class="container text-center" style="border: 1px solid lightgrey;padding-top: 10px;padding-bottom: 10px;">
+        <div class="row">
+            {% for imgsrc in imgset1 %}
+                <div class="col-4" style="padding: 5px;">
+                    <img src="{{imgsrc}}" width="300" height="200" alt="img">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+    <br>
+    <button id="btnNext1" style="width: 150px;display: block;margin-left: auto;" type="button" class="btn btn-primary">Next</button>
+    <br><br>
+    </div>
+</div>
+
+<div id="divSet2" style="display: none;">
+    <div class="container">
+        <h5>Select 2nd Image Point</h5>
+    </div>
+    <div class="container text-center" style="border: 1px solid lightgrey;padding-top: 10px;padding-bottom: 10px;">
+        <div class="row">
+            {% for imgsrc in imgset2 %}
+                <div class="col-4" style="padding: 5px;">
+                    <img src="{{imgsrc}}" width="300" height="200" alt="img">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+    <br>
+    <button id="btnNext2" style="width: 150px;display: block;margin-left: auto;" type="button" class="btn btn-primary">Next</button>
+    <br><br>
+    </div>
+</div>
+
+
+<div id="divSet3" style="display: none;">
+    <div class="container">
+        <h5>Select 3rd Image Point</h5>
+    </div>
+    <div class="container text-center" style="border: 1px solid lightgrey;padding-top: 10px;padding-bottom: 10px;">
+        <div class="row">
+            {% for imgsrc in imgset3 %}
+                <div class="col-4" style="padding: 5px;">
+                    <img src="{{imgsrc}}" width="300" height="200" alt="img">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+    <br>
+    <form method="post" onsubmit="return validateForm();">
+        {% csrf_token %}
+        <input type="hidden" name="yields" value="">
+        <input type="hidden" name="username" value="{{username}}">
+        <input type="hidden" name="step" value="passpoint">
+        <button style="width: 150px;display: block;margin-left: auto;" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br><br>
+    </div>
+</div>
+
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Select Image Area</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <canvas id="imgCanvas" width="750" height="450"></canvas>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
